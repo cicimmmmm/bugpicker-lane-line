@@ -16,7 +16,14 @@ BioKEA's sample prep goes from a bag of preserved insects to barcodes in four st
 | 3 | Pick to plate | BugPicker — vision-guided suction into a 96-well plate |
 | 4 | Lyse and barcode | Enzyme dispenser → incubator → sequencing |
 
-We did not change the steps. We took **step 1** — the brief's first ask, *"a more robust robotic sieve that works on real, preserved samples, run after run"* — and asked what the simplest robust drive for it could be. The kit's open question (slide 14): *what motion clears a blinded screen, and how does the stack know it is done?*
+We did not change the steps. We took **step 1** — the brief's first ask, *"a more robust robotic sieve that works on real, preserved samples, run after run"*. How the current BugSorter fails on real samples today:
+
+1. **Water is not effective on the lower trays** — the jets lose energy through each screen; only the top tray gets cleared.
+2. **Bugs fall off the side** of the trays.
+3. **Bugs stick to each other** — wet clumps never get pulled apart.
+4. **Bugs stick to the net** — surface tension holds them to the mesh; a timed jet misses most of it.
+
+All four are drive problems, so we asked what the simplest robust drive for the sieve could be. The kit's open question (slide 14): *what motion clears a blinded screen, and how does the stack know it is done?*
 
 Today's stand-in for bugs is the pantry size ladder: chia (~1 mm), couscous (~2 mm), rice (~6 mm), wild rice (~10 mm), broken noodles (10–20 mm), whole noodles (~30 mm).
 
@@ -59,13 +66,15 @@ Demo video: [`media/demo-shake.mp4`](media/demo-shake.mp4)
 
 ## Why it is better — step 1, same parts
 
-| | Original BugSorter | BUZZ |
+| Failure today | Why | BUZZ |
 |---|---|---|
-| Drive | linear actuator shakes, water jets clear | one toothbrush on a hung frame, 100+ Hz through one hole |
-| Moving parts | motor, pump, valves, controller | one brush, one switch |
-| Clearing a blinded mesh | water jet, timed | vibration keeps the mesh clear while it sorts |
+| Water ineffective on lower trays | jets lose energy through each screen | no water; vibration is driven into the frame, so every tray in the stack shakes the same |
+| Bugs fall off the side | open trays, slosh and jets push over the edge | tray hangs level with walls; vibration walks specimens toward a wall, not over it; honeycomb cells hold them |
+| Bugs stick to each other | wet clumps never pulled apart | 100+ Hz agitation detangles; a cell fits one, so a pair can't settle together |
+| Bugs stick to the net | surface tension; a timed jet misses most of it | the mesh itself vibrates continuously — self-clearing, nothing to time |
 | Done detection | not addressed | one overhead photo: nothing left above the mesh, or cells read 0 / 1 / 2 |
-| Hand-off to step 2/3 | heap on a tray | honeycomb: one specimen per cell |
+
+Drive: one toothbrush on a hung frame vs. motor + pump + valves + controller.
 
 Not yet proven: wet operation in ethanol (damping changes), and drive-direction alignment.
 
