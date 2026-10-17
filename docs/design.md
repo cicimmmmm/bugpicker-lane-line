@@ -1,4 +1,4 @@
-# Design notes
+# Design notes — BUZZ (step 1: the sieve)
 
 ## 1. Vibration module (pushrod / crank)
 
